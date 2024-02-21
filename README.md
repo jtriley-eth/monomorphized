@@ -1,66 +1,28 @@
-## Foundry
+# Monomorphized
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+If solidiy will not give monomoprhized compile time polymorphism, the markets
+create monomorphization for it.
 
-Foundry consists of:
+## `Dyn<Type>`
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The `Dyn<Type>` library suite contains functions to convert statically sized
+arrays of each primitive type to dynamically sized primitive types of the same
+type. This works for up to 20 elements and takes up `O(n * 2 + 1)` memory slots
+total.
 
-## Documentation
+Usage:
 
-https://book.getfoundry.sh/
+```solidity
+import { DynAddress } from "monomorphized/DynAddress.sol";
 
-## Usage
+contract Example {
+    using DynAddress for *;
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+    function arrays() public pure returns (address[] memory, uint8[] memory) {
+        return (
+            [address(0x01)].dyn(),
+            [1, 2, 3, 4, 5].dyn()
+        );
+    }
+}
 ```
