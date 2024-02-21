@@ -14,9 +14,11 @@ Usage:
 
 ```solidity
 import { DynAddress } from "monomorphized/DynAddress.sol";
+import { DynUint8 } from "monomorphized/DynUint8.sol";
 
 contract Example {
     using DynAddress for *;
+    using DynUint8 for *;
 
     function arrays() public pure returns (address[] memory, uint8[] memory) {
         return (
