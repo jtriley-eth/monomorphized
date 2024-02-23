@@ -1,6 +1,6 @@
 # Monomorphized
 
-If solidiy will not give monomoprhized compile time polymorphism, the markets
+If solidity will not give monomoprhized compile time polymorphism, the markets
 create monomorphization for it.
 
 ## `Dyn<Type>`
