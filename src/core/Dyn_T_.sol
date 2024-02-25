@@ -1,19 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity 0.8.24;
 
-type _T_ is uint256;
-
-using {eq_T_ as ==, neq_T_ as !=} for _T_ global;
-
-function eq_T_(_T_ lhs, _T_ rhs) pure returns (bool res) {
-    assembly ("memory-safe") {
-        res := eq(lhs, rhs)
-    }
-}
-
-function neq_T_(_T_ lhs, _T_ rhs) pure returns (bool) {
-    return !(lhs == rhs);
-}
+import { _T_ } from "./_T_.sol";
 
 library Dyn_T_ {
     function dyn(_T_[1] memory src) internal pure returns (_T_[] memory dst) {
