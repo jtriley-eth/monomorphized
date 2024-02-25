@@ -1,31 +1,71 @@
 #!/usr/local/anaconda3/bin/python
 
-def monomorphize_source(src, primitive):
-    monomorpized_src = src.replace('Dyn_T_', f'Dyn{primitive.capitalize()}')
-    monomorpized_src = monomorpized_src.replace(tmp, '', 1)
-    monomorpized_src = monomorpized_src.replace('_T_', primitive)
-    return monomorpized_src
-
-def monomporphize_tests(tests, primitive):
-    monomorphized_t = tests.replace('import { Dyn_T_, _T_ } from "../src/core/Dyn_T_.sol";', f'import {{ Dyn{primitive.capitalize()} }} from "../src/Dyn{primitive.capitalize()}.sol";', 1)
-    monomorphized_t = monomorphized_t.replace('Dyn_T_', f'Dyn{primitive.capitalize()}')
-    monomorphized_t = monomorphized_t.replace('_T_', f'{primitive}')
-    return monomorphized_t
-
-def main():
+def monomorphize_dyn():
     source = ''
     with open('src/core/Dyn_T_.sol', 'r') as f:
         source = f.read()
 
     tests = ''
-    with open('test/Dyn_T_.t.sol', 'r') as f:
+    with open('test/core/Dyn_T_.t.sol', 'r') as f:
         tests = f.read()
 
     for primitive in primitive_types:
-        with open(f'src/Dyn{primitive.capitalize()}.sol', 'w') as f:
-            f.write(monomorphize_source(source, primitive))
-        with open(f'test/Dyn{primitive.capitalize()}.t.sol', 'w') as f:
-            f.write(monomporphize_tests(tests, primitive))
+        with open(f'src/dyn/Dyn{primitive.capitalize()}.sol', 'w') as f:
+            f.write(source\
+                .replace(t_import_src, '', 1)\
+                .replace('Dyn_T_', f'Dyn{primitive.capitalize()}')\
+                .replace('_T_', primitive)
+            )
+        with open(f'test/dyn/Dyn{primitive.capitalize()}.t.sol', 'w') as f:
+            f.write(tests\
+                .replace(t_import_test, '', 1)\
+                .replace('/core', '/dyn')\
+                .replace('Dyn_T_', f'Dyn{primitive.capitalize()}')\
+                .replace('_T_', primitive)
+            )
+
+
+def monomorphize_option():
+    source = ''
+    with open('src/core/Option_T_.sol', 'r') as f:
+        source = f.read()
+
+    tests = ''
+    with open('test/core/Option_T_.t.sol', 'r') as f:
+        tests = f.read()
+    for primitive in primitive_types:
+        with open(f'src/option/Option{primitive.capitalize()}.sol', 'w') as f:
+            f.write(source\
+                .replace(t_import_src, '', 1)\
+                .replace('Option_T_', f'Option{primitive.capitalize()}')\
+                .replace('_T_', primitive)
+            )
+        with open(f'test/option/Option{primitive.capitalize()}.t.sol', 'w') as f:
+            f.write(replace_wrap(tests, primitive)\
+                .replace(t_import_test, '', 1)\
+                .replace('/core', '/option')\
+                .replace('Option_T_', f'Option{primitive.capitalize()}')\
+                .replace('_T_', primitive)
+            )
+
+
+def replace_wrap(source, primitive):
+    if primitive == 'bool':
+        return source.replace('_T_.wrap(1)', 'false').replace('_T_.wrap(2)', 'true')
+    elif primitive.startswith('bytes'):
+        size = int(primitive[5:])
+        return source\
+            .replace('_T_.wrap(1)', f'bytes{size}(uint{size*8}(1))')\
+            .replace('_T_.wrap(2)', f'bytes{size}(uint{size*8}(2))')
+    else:
+        return source.replace('_T_.wrap', primitive)
+
+def main():
+    monomorphize_dyn()
+    monomorphize_option()
+
+t_import_src = '\nimport { _T_ } from "./_T_.sol";\n'
+t_import_test = '\nimport { _T_ } from "../../src/core/_T_.sol";\n'
 
 primitive_types = [
     'bool',
@@ -127,22 +167,6 @@ primitive_types = [
     'bytes32',
     'address',
 ]
-
-tmp = '''
-type _T_ is uint256;
-
-using {eq_T_ as ==, neq_T_ as !=} for _T_ global;
-
-function eq_T_(_T_ lhs, _T_ rhs) pure returns (bool res) {
-    assembly ("memory-safe") {
-        res := eq(lhs, rhs)
-    }
-}
-
-function neq_T_(_T_ lhs, _T_ rhs) pure returns (bool) {
-    return !(lhs == rhs);
-}
-'''
 
 if __name__ == '__main__':
     main()
