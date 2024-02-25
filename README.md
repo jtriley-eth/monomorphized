@@ -13,8 +13,8 @@ total.
 Usage:
 
 ```solidity
-import { DynAddress } from "monomorphized/DynAddress.sol";
-import { DynUint8 } from "monomorphized/DynUint8.sol";
+import { DynAddress } from "monomorphized/dyn/DynAddress.sol";
+import { DynUint8 } from "monomorphized/dyn/DynUint8.sol";
 
 contract Example {
     using DynAddress for *;
@@ -25,6 +25,34 @@ contract Example {
             [address(0x01)].dyn(),
             [1, 2, 3, 4, 5].dyn()
         );
+    }
+}
+```
+
+## `Option<Type>`
+
+The `Option<Type>` library suite contains a sum type to handle optional values.
+This allocates a single slot of memory per instantiation or cloning.
+
+Usage:
+
+```solidity
+import { OptionUint256, LibOptionUint256 } from "monomorphized/option/OptionUint256.sol";
+
+function double(uint256 a) pure returns (uint256) {
+    return a * 2;
+}
+
+function plusOne(uint256 a) pure returns (uint256) {
+    return a + 1;
+}
+
+contract Example {
+    function showcase() public pure returns (uint256) {
+        return LibOptionUint256.Some(1)
+            .map(double)
+            .map(plusOne)
+            .unwrwap();
     }
 }
 ```
