@@ -27,9 +27,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x03)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x03))
             mstore(0x40, add(dst, 0x80))
         }
     }
@@ -38,10 +36,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x04)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x04))
             mstore(0x40, add(dst, 0xa0))
         }
     }
@@ -50,11 +45,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x05)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x05))
             mstore(0x40, add(dst, 0xc0))
         }
     }
@@ -63,12 +54,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x06)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x06))
             mstore(0x40, add(dst, 0xe0))
         }
     }
@@ -77,13 +63,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x07)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x07))
             mstore(0x40, add(dst, 0x100))
         }
     }
@@ -92,14 +72,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x08)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x08))
             mstore(0x40, add(dst, 0x120))
         }
     }
@@ -108,15 +81,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x09)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x09))
             mstore(0x40, add(dst, 0x140))
         }
     }
@@ -125,16 +90,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0a)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0a))
             mstore(0x40, add(dst, 0x160))
         }
     }
@@ -143,17 +99,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0b)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0b))
             mstore(0x40, add(dst, 0x180))
         }
     }
@@ -162,18 +108,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0c)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0c))
             mstore(0x40, add(dst, 0x1a0))
         }
     }
@@ -182,19 +117,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0d)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0d))
             mstore(0x40, add(dst, 0x1c0))
         }
     }
@@ -203,20 +126,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0e)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0e))
             mstore(0x40, add(dst, 0x1e0))
         }
     }
@@ -225,21 +135,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x0f)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x0f))
             mstore(0x40, add(dst, 0x200))
         }
     }
@@ -248,22 +144,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x10)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
-            mstore(add(dst, 0x200), mload(add(src, 0x1e0)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x10))
             mstore(0x40, add(dst, 0x220))
         }
     }
@@ -272,23 +153,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x11)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
-            mstore(add(dst, 0x200), mload(add(src, 0x1e0)))
-            mstore(add(dst, 0x220), mload(add(src, 0x200)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x11))
             mstore(0x40, add(dst, 0x240))
         }
     }
@@ -297,24 +162,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x12)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
-            mstore(add(dst, 0x200), mload(add(src, 0x1e0)))
-            mstore(add(dst, 0x220), mload(add(src, 0x200)))
-            mstore(add(dst, 0x240), mload(add(src, 0x220)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x12))
             mstore(0x40, add(dst, 0x260))
         }
     }
@@ -323,25 +171,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x13)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
-            mstore(add(dst, 0x200), mload(add(src, 0x1e0)))
-            mstore(add(dst, 0x220), mload(add(src, 0x200)))
-            mstore(add(dst, 0x240), mload(add(src, 0x220)))
-            mstore(add(dst, 0x260), mload(add(src, 0x240)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x13))
             mstore(0x40, add(dst, 0x280))
         }
     }
@@ -350,26 +180,7 @@ library Dyn_T_ {
         assembly ("memory-safe") {
             dst := mload(0x40)
             mstore(dst, 0x14)
-            mstore(add(dst, 0x20), mload(src))
-            mstore(add(dst, 0x40), mload(add(src, 0x20)))
-            mstore(add(dst, 0x60), mload(add(src, 0x40)))
-            mstore(add(dst, 0x80), mload(add(src, 0x60)))
-            mstore(add(dst, 0xa0), mload(add(src, 0x80)))
-            mstore(add(dst, 0xc0), mload(add(src, 0xa0)))
-            mstore(add(dst, 0xe0), mload(add(src, 0xc0)))
-            mstore(add(dst, 0x100), mload(add(src, 0xe0)))
-            mstore(add(dst, 0x120), mload(add(src, 0x100)))
-            mstore(add(dst, 0x140), mload(add(src, 0x120)))
-            mstore(add(dst, 0x160), mload(add(src, 0x140)))
-            mstore(add(dst, 0x180), mload(add(src, 0x160)))
-            mstore(add(dst, 0x1a0), mload(add(src, 0x180)))
-            mstore(add(dst, 0x1c0), mload(add(src, 0x1a0)))
-            mstore(add(dst, 0x1e0), mload(add(src, 0x1c0)))
-            mstore(add(dst, 0x200), mload(add(src, 0x1e0)))
-            mstore(add(dst, 0x220), mload(add(src, 0x200)))
-            mstore(add(dst, 0x240), mload(add(src, 0x220)))
-            mstore(add(dst, 0x260), mload(add(src, 0x240)))
-            mstore(add(dst, 0x280), mload(add(src, 0x260)))
+            mcopy(add(dst, 0x20), src, mul(0x20, 0x14))
             mstore(0x40, add(dst, 0x2a0))
         }
     }
