@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-only OR MIT
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.24;
 
 import { OptionUint96, LibOptionUint96 } from "../../src/option/OptionUint96.sol";

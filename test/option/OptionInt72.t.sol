@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-only OR MIT
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.24;
 
 import { OptionInt72, LibOptionInt72 } from "../../src/option/OptionInt72.sol";
