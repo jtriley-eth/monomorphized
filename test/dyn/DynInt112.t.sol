@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: AGPL-3.0-only OR MIT
 pragma solidity 0.8.24;
 
 import { DynInt112 } from "../../src/dyn/DynInt112.sol";

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: AGPL-3.0-only OR MIT
 pragma solidity 0.8.24;
 
 import { DynBytes24 } from "../../src/dyn/DynBytes24.sol";

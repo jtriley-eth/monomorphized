@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: AGPL-3.0-only OR MIT
 pragma solidity 0.8.24;
 
 import { OptionBytes3, LibOptionBytes3 } from "../../src/option/OptionBytes3.sol";
